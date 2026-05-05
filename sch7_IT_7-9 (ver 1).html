@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ИТ-вертикаль — ГБОУ Школа № 7 г. Москвы</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        dark: '#09090b',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::selection { background: rgba(16,185,129,0.2); color: #a7f3d0; }
+        body { background: #09090b; }
+
+        .card-glow:hover {
+            box-shadow: 0 0 30px rgba(16,185,129,0.08), 0 0 60px rgba(16,185,129,0.04);
+        }
+
+        .accent-bar {
+            background: linear-gradient(to right, rgba(16,185,129,0.5), rgba(16,185,129,0.05));
+            height: 2px;
+        }
+
+        .hero-glow {
+            background: radial-gradient(ellipse at top, rgba(16,185,129,0.12), rgba(16,185,129,0.02) 50%, transparent 70%);
+        }
+
+        .grid-bg {
+            background-image:
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        .float-animation {
+            animation: floatUp 6s ease-in-out infinite;
+        }
+        .float-animation-delay {
+            animation: floatUp 6s ease-in-out 2s infinite;
+        }
+
+        @keyframes floatUp {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+        .pulse-slow { animation: pulse-slow 3s ease-in-out infinite; }
+
+        .tag-scroll {
+            animation: scroll-tags 20s linear infinite;
+        }
+        @keyframes scroll-tags {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .direction-card {
+            transition: all 0.3s ease;
+        }
+        .direction-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(16,185,129,0.3);
+        }
+        .direction-card:hover .dir-icon {
+            transform: scale(1.1);
+            color: #10b981;
+        }
+        .dir-icon { transition: all 0.3s ease; }
+
+        .stat-number {
+            background: linear-gradient(to bottom, #ffffff, #a1a1aa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @media print {
+            body { display: none; }
+            .no-print { display: none; }
+        }
+    </style>
+</head>
+<body class="font-sans text-white antialiased overflow-x-hidden">
+
+    
+    <!-- Навигация -->
+    <nav class="fixed top-0 left-0 right-0 z-50 h-16 flex items-center px-6 border-b border-white/5" style="backdrop-filter: blur(12px); background: rgba(9,9,11,0.8);">
+        <div class="max-w-7xl mx-auto w-full flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center">
+                    <iconify-icon icon="lucide:code-2" width="16" class="text-emerald-400"></iconify-icon>
+                </div>
+                <span class="font-semibold text-sm tracking-tight">Школа № 7</span>
+                <span class="text-xs text-zinc-500 font-mono ml-1">IT-вертикаль</span>
+            </div>
+            <div class="hidden md:flex items-center gap-6 text-sm text-zinc-400">
+                <a href="#program" class="hover:text-white transition-colors duration-150">Программа</a>
+                <a href="#directions" class="hover:text-white transition-colors duration-150">Направления</a>
+                <a href="#contacts" class="hover:text-white transition-colors duration-150">Контакты</a>
+            </div>
+            <div class="flex items-center gap-2">
+                <span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/5 text-xs text-emerald-400 font-medium">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-slow"></span>
+                    Набор открыт
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="relative pt-32 pb-20 overflow-hidden">
+        <div class="absolute inset-0 hero-glow"></div>
+        <div class="absolute inset-0 grid-bg opacity-50"></div>
+        <div class="absolute top-40 left-10 w-72 h-72 bg-emerald-500/5 rounded-full blur-3xl float-animation"></div>
+        <div class="absolute top-60 right-10 w-56 h-56 bg-blue-500/5 rounded-full blur-3xl float-animation-delay"></div>
+
+        <div class="relative max-w-7xl mx-auto px-6 text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 mb-8">
+                <iconify-icon icon="lucide:cpu" width="14" class="text-emerald-400"></iconify-icon>
+                <span class="text-xs font-medium text-zinc-300">ГБОУ Школа № 7 г. Москвы</span>
+            </div>
+
+            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.1] mb-6">
+                <span class="text-white">ИТ-вертикаль</span><br>
+                <span class="stat-number">в школе № 7</span>
+            </h1>
+
+            <p class="text-lg sm:text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed mb-4">
+                Информационная безопасность, программирование и анализ данных — 
+                с 7 по 9 класс в рамках проекта «ИТ-класс в московской школе»
+            </p>
+
+            <p class="text-sm text-emerald-400/80 font-medium mb-10">
+                Скучно точно не будет!
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#program" class="inline-flex items-center gap-2 px-8 py-3 bg-white text-dark font-semibold text-sm rounded-xl hover:bg-zinc-200 transition-colors duration-150">
+                    Узнать подробнее
+                    <iconify-icon icon="lucide:arrow-down" width="16"></iconify-icon>
+                </a>
+                <a href="#contacts" class="inline-flex items-center gap-2 px-8 py-3 border border-white/10 text-zinc-300 font-medium text-sm rounded-xl hover:border-white/20 hover:text-white transition-all duration-150">
+                    Записаться
+                    <iconify-icon icon="lucide:arrow-right" width="16"></iconify-icon>
+                </a>
+            </div>
+
+            <div class="mt-14 overflow-hidden relative">
+                <div class="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-dark to-transparent z-10"></div>
+                <div class="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-dark to-transparent z-10"></div>
+                <div class="flex gap-3 tag-scroll whitespace-nowrap">
+                    <span class="px-4 py-1.5 rounded-full border border-white/5 bg-white/[0.02] text-xs text-zinc-500 font-mono">Python</span>
+                    <span class="px-4 py-1.5 rounded-full border border-emerald-500/10 bg-emerald-500/5 text-xs text-emerald-400/70 font-mono">Кибербез</span>
+                    <span class="px-4 py-1.5 rounded-full border border-white/5 bg-white/[0.02] text-xs text-zinc-500 font-mono">SQL</span>
+                    <span class="px-4 py-1.5 rounded-full border border-white/5 bg-white/[0.02] text-xs text-zinc-500 font-mono">Дроны</span>
+                    <span class="px-4 py-1.5 rounded-full border border-white/5 bg-white/[0.02] text-xs text-zinc-500 font-mono">Linux</span>
+                    <span class="px-4 py-1.5 rounded-full border border-emerald-500/10 bg-emerald-500/5 text-xs text-emerald-400/70 font-mono">CTF</span>
+                    <span class="px-4 py-1.5 rounded-full border border-white/5 bg-white/[0.02] text-xs text-zinc-500 font-mono">Робототехника</span>
+                    <span class="px-4 py-1.5 rounded-full border border-white/5 bg-white/[0.02] text-xs text-zinc-500 font-mono">Лазерные станки</span>
+                    <span class="px-4 py-1.5 rounded-full border border-white/5 bg-white/[0.02] text-xs text-zinc-500 font-mono">Анализ данных</span>
+                    <span class="px-4 py-1.5 rounded-full border border-white/5 bg-white/[0.02] text-xs text-zinc-500 font-mono">Pandas</span>
+                    <span class="px-4 py-1.5 rounded-full border border-white/5 bg-white/[0.02] text-xs text-zinc-500 font-mono">Python</span>
+                    <span class="px-4 py-1.5 rounded-full border border-emerald-500/10 bg-emerald-500/5 text-xs text-emerald-400/70 font-mono">Кибербез</span>
+                    <span class="px-4 py-1.5 rounded-full border border-white/5 bg-white/[0.02] text-xs text-zinc-500 font-mono">SQL</span>
+                    <span class="px-4 py-1.5 rounded-full border border-white/5 bg-white/[0.02] text-xs text-zinc-500 font-mono">Дроны</span>
+                    <span class="px-4 py-1.5 rounded-full border border-white/5 bg-white/[0.02] text-xs text-zinc-500 font-mono">Linux</span>
+                    <span class="px-4 py-1.5 rounded-full border border-emerald-500/10 bg-emerald-500/5 text-xs text-emerald-400/70 font-mono">CTF</span>
+                    <span class="px-4 py-1.5 rounded-full border border-white/5 bg-white/[0.02] text-xs text-zinc-500 font-mono">Робототехника</span>
+                    <span class="px-4 py-1.5 rounded-full border border-white/5 bg-white/[0.02] text-xs text-zinc-500 font-mono">Лазерные станки</span>
+                    <span class="px-4 py-1.5 rounded-full border border-white/5 bg-white/[0.02] text-xs text-zinc-500 font-mono">Анализ данных</span>
+                    <span class="px-4 py-1.5 rounded-full border border-white/5 bg-white/[0.02] text-xs text-zinc-500 font-mono">Pandas</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="accent-bar max-w-7xl mx-auto"></div>
+
+    <!-- Программа 7-9 классов -->
+    <section id="program" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/20 bg-emerald-500/5 text-xs text-emerald-400 font-medium mb-4">
+                    <iconify-icon icon="lucide:book-open" width="12"></iconify-icon>
+                    Учебная программа
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight mb-4">Три столпа ИТ-класса</h2>
+                <p class="text-zinc-400 text-lg max-w-xl mx-auto">Фундаментальные навыки, которые формируются на уроках и практике с 7 по 9 класс</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="direction-card relative rounded-2xl border border-white/5 bg-white/[0.02] p-8 card-glow overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-red-500/5 rounded-full blur-2xl -mr-10 -mt-10"></div>
+                    <div class="relative">
+                        <div class="w-12 h-12 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center mb-6">
+                            <iconify-icon icon="lucide:shield-check" width="22" class="text-red-400 dir-icon"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-3">Информационная безопасность</h3>
+                        <p class="text-sm text-zinc-400 leading-relaxed mb-5">
+                            Основы криптографии, сетевая безопасность, работа в Linux-окружении, анализ уязвимостей. Участие в CTF-соревнованиях — настоящий хакерский спорт.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 rounded-md bg-white/5 text-[11px] font-mono text-zinc-500">Linux</span>
+                            <span class="px-2.5 py-1 rounded-md bg-white/5 text-[11px] font-mono text-zinc-500">Wireshark</span>
+                            <span class="px-2.5 py-1 rounded-md bg-white/5 text-[11px] font-mono text-zinc-500">CTF</span>
+                            <span class="px-2.5 py-1 rounded-md bg-white/5 text-[11px] font-mono text-zinc-500">Криптография</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="direction-card relative rounded-2xl border border-emerald-500/10 bg-emerald-500/[0.03] p-8 card-glow overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-2xl -mr-10 -mt-10"></div>
+                    <div class="relative">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-6">
+                            <iconify-icon icon="lucide:code-2" width="22" class="text-emerald-400 dir-icon"></iconify-icon>
+                        </div>
+                        <div class="absolute top-6 right-6">
+                            <span class="text-[10px] font-mono text-emerald-400/50 uppercase tracking-wider">Core</span>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-3">Программирование</h3>
+                        <p class="text-sm text-zinc-400 leading-relaxed mb-5">
+                            Python как основной язык: от базовых конструкций до алгоритмов и проектной разработки. Решение олимпиадных задач, создание ботов, веб-приложений и автоматизаций.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 rounded-md bg-emerald-500/5 text-[11px] font-mono text-emerald-400/60">Python</span>
+                            <span class="px-2.5 py-1 rounded-md bg-white/5 text-[11px] font-mono text-zinc-500">Алгоритмы</span>
+                            <span class="px-2.5 py-1 rounded-md bg-white/5 text-[11px] font-mono text-zinc-500">Git</span>
+                            <span class="px-2.5 py-1 rounded-md bg-white/5 text-[11px] font-mono text-zinc-500">Олимпиады</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="direction-card relative rounded-2xl border border-white/5 bg-white/[0.02] p-8 card-glow overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-full blur-2xl -mr-10 -mt-10"></div>
+                    <div class="relative">
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-6">
+                            <iconify-icon icon="lucide:bar-chart-3" width="22" class="text-blue-400 dir-icon"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-3">Анализ данных</h3>
+                        <p class="text-sm text-zinc-400 leading-relaxed mb-5">
+                            Сбор, очистка и визуализация данных. Основы SQL, работа с таблицами и датасетами. Учимся находить закономерности и строить графики, как настоящие аналитики.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 rounded-md bg-white/5 text-[11px] font-mono text-zinc-500">SQL</span>
+                            <span class="px-2.5 py-1 rounded-md bg-white/5 text-[11px] font-mono text-zinc-500">Pandas</span>
+                            <span class="px-2.5 py-1 rounded-md bg-white/5 text-[11px] font-mono text-zinc-500">Визуализация</span>
+                            <span class="px-2.5 py-1 rounded-md bg-white/5 text-[11px] font-mono text-zinc-500">Excel</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="accent-bar max-w-7xl mx-auto"></div>
+
+    <!-- Все направления -->
+    <section id="directions" class="py-24 relative">
+        <div class="absolute inset-0 grid-bg opacity-30"></div>
+        <div class="relative max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/20 bg-emerald-500/5 text-xs text-emerald-400 font-medium mb-4">
+                    <iconify-icon icon="lucide:layout-grid" width="12"></iconify-icon>
+                    Не только уроки
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight mb-4">Развитие по всем направлениям</h2>
+                <p class="text-zinc-400 text-lg max-w-2xl mx-auto">
+                    Уроки, кружки и внеурочная деятельность — скучно точно не будет!
+                </p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="direction-card rounded-xl border border-white/5 bg-white/[0.02] p-6 card-glow">
+                    <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center mb-4">
+                        <iconify-icon icon="lucide:bar-chart-3" width="18" class="text-emerald-400 dir-icon"></iconify-icon>
+                    </div>
+                    <h3 class="text-sm font-semibold mb-1.5">Анализ данных</h3>
+                    <p class="text-xs text-zinc-500 leading-relaxed">Работа с датасетами, построение дашбордов, основы машинного обучения</p>
+                </div>
+
+                <div class="direction-card rounded-xl border border-white/5 bg-white/[0.02] p-6 card-glow">
+                    <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center mb-4">
+                        <iconify-icon icon="lucide:bot" width="18" class="text-blue-400 dir-icon"></iconify-icon>
+                    </div>
+                    <h3 class="text-sm font-semibold mb-1.5">Робототехника</h3>
+                    <p class="text-xs text-zinc-500 leading-relaxed">Сборка и программирование роботов, соревнования, конструирование</p>
+                </div>
+
+                <div class="direction-card rounded-xl border border-white/5 bg-white/[0.02] p-6 card-glow">
+                    <div class="w-10 h-10 rounded-lg bg-orange-500/10 flex items-center justify-center mb-4">
+                        <iconify-icon icon="lucide:scan-line" width="18" class="text-orange-400 dir-icon"></iconify-icon>
+                    </div>
+                    <h3 class="text-sm font-semibold mb-1.5">Лазерные станки</h3>
+                    <p class="text-xs text-zinc-500 leading-relaxed">САD-моделирование, лазерная резка и гравировка, прототипирование</p>
+                </div>
+
+                <div class="direction-card rounded-xl border border-white/5 bg-white/[0.02] p-6 card-glow">
+                    <div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center mb-4">
+                        <iconify-icon icon="lucide:plane" width="18" class="text-purple-400 dir-icon"></iconify-icon>
+                    </div>
+                    <h3 class="text-sm font-semibold mb-1.5">Пилотирование дронов</h3>
+                    <p class="text-xs text-zinc-500 leading-relaxed">Управление БПЛА, полётные задания, аэросъёмка и соревнования</p>
+                </div>
+
+                <div class="direction-card rounded-xl border border-white/5 bg-white/[0.02] p-6 card-glow">
+                    <div class="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center mb-4">
+                        <iconify-icon icon="lucide:shield-check" width="18" class="text-red-400 dir-icon"></iconify-icon>
+                    </div>
+                    <h3 class="text-sm font-semibold mb-1.5">Кибербезопасность</h3>
+                    <p class="text-xs text-zinc-500 leading-relaxed">CTF-турниры, пентест, защита информации, этичный хакинг</p>
+                </div>
+
+                <div class="direction-card rounded-xl border border-white/5 bg-white/[0.02] p-6 card-glow">
+                    <div class="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center mb-4">
+                        <iconify-icon icon="lucide:globe" width="18" class="text-cyan-400 dir-icon"></iconify-icon>
+                    </div>
+                    <h3 class="text-sm font-semibold mb-1.5">Веб-разработка</h3>
+                    <p class="text-xs text-zinc-500 leading-relaxed">HTML/CSS/JS, создание сайтов, основы фреймворков, хостинг</p>
+                </div>
+
+                <div class="direction-card rounded-xl border border-white/5 bg-white/[0.02] p-6 card-glow">
+                    <div class="w-10 h-10 rounded-lg bg-yellow-500/10 flex items-center justify-center mb-4">
+                        <iconify-icon icon="lucide:gamepad-2" width="18" class="text-yellow-400 dir-icon"></iconify-icon>
+                    </div>
+                    <h3 class="text-sm font-semibold mb-1.5">Геймдев</h3>
+                    <p class="text-xs text-zinc-500 leading-relaxed">Создание игр на Python и в движках, игровая логика и дизайн</p>
+                </div>
+
+                <div class="direction-card rounded-xl border border-white/5 bg-white/[0.02] p-6 card-glow">
+                    <div class="w-10 h-10 rounded-lg bg-pink-500/10 flex items-center justify-center mb-4">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-pink-400 dir-icon">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                            <path d="M7.5 4.21l4.5 2.6 4.5-2.6"/>
+                            <path d="M7.5 19.79V14.6L3 12"/>
+                            <path d="M21 12l-4.5 2.6v5.19"/>
+                            <path d="M3.27 6.96L12 12.01l8.73-5.05"/>
+                            <path d="M12 22.08V12"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-sm font-semibold mb-1.5">3D-моделирование</h3>
+                    <p class="text-xs text-zinc-500 leading-relaxed">Blender, 3D-печать, создание моделей для проектов и печати</p>
+                </div>
+            </div>
+
+            <div class="mt-8 text-center">
+                <div class="inline-flex items-center gap-2 text-xs text-zinc-600">
+                    <iconify-icon icon="lucide:info" width="14"></iconify-icon>
+                    Все направления — на уроках, кружках и во внеурочной деятельности
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="accent-bar max-w-7xl mx-auto"></div>
+
+    <!-- Команда и опыт -->
+    <section class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/20 bg-emerald-500/5 text-xs text-emerald-400 font-medium mb-4">
+                    <iconify-icon icon="lucide:users" width="12"></iconify-icon>
+                    Команда и ресурсы
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight mb-4">Опыт и поддержка</h2>
+                <p class="text-zinc-400 text-lg max-w-xl mx-auto">Работаем в рамках городской программы с лучшими партнёрами</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="rounded-2xl border border-white/5 bg-white/[0.02] p-8 card-glow">
+                    <div class="flex items-start gap-4 mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <iconify-icon icon="lucide:graduation-cap" width="18" class="text-zinc-400"></iconify-icon>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-semibold mb-1">Опытные педагоги</h3>
+                            <p class="text-sm text-zinc-500 leading-relaxed">Практикующие ИТ-специалисты и педагоги с профильным образованием. Регулярное повышение квалификации у партнёров проекта</p>
+                        </div>
+                    </div>
+                    <div class="accent-bar mb-6"></div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <iconify-icon icon="lucide:building-2" width="18" class="text-zinc-400"></iconify-icon>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-semibold mb-1">Ресурсные центры</h3>
+                            <p class="text-sm text-zinc-500 leading-relaxed">МГТУ им. Н.Э. Баумана, МГУ им. М.В. Ломоносова, НИУ ВШЭ, МИРЭА — методическая поддержка и доступ к лабораториям</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rounded-2xl border border-white/5 bg-white/[0.02] p-8 card-glow">
+                    <div class="flex items-start gap-4 mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <iconify-icon icon="lucide:trophy" width="18" class="text-emerald-400"></iconify-icon>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-semibold mb-1">Командная работа</h3>
+                            <p class="text-sm text-zinc-500 leading-relaxed">Хакатоны, CTF-турниры, ИТ-марафоны, командные олимпиады — учимся работать вместе и побеждать</p>
+                        </div>
+                    </div>
+                    <div class="accent-bar mb-6"></div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <iconify-icon icon="lucide:compass" width="18" class="text-blue-400"></iconify-icon>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-semibold mb-1">Профориентация</h3>
+                            <p class="text-sm text-zinc-500 leading-relaxed">Экскурсии в ИТ-компании, лекции от индустриальных экспертов, День открытых дверей в вузах-партнёрах</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="accent-bar max-w-7xl mx-auto"></div>
+
+   
+    <div class="accent-bar max-w-7xl mx-auto"></div>
+
+    <!-- Формат обучения -->
+    <section class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/20 bg-emerald-500/5 text-xs text-emerald-400 font-medium mb-4">
+                    <iconify-icon icon="lucide:layers" width="12"></iconify-icon>
+                    Формат
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight mb-4">Как это устроено</h2>
+                <p class="text-zinc-400 text-lg max-w-xl mx-auto">Три формата деятельности — максимум погружения в ИТ</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="relative rounded-2xl border border-white/5 bg-white/[0.02] p-8 card-glow text-center">
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                        <div class="w-8 h-8 rounded-full bg-dark border-2 border-emerald-500/30 flex items-center justify-center text-xs font-mono text-emerald-400">01</div>
+                    </div>
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mx-auto mb-5">
+                        <iconify-icon icon="lucide:presentation" width="24" class="text-emerald-400"></iconify-icon>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Уроки</h3>
+                    <p class="text-sm text-zinc-500 leading-relaxed">Углублённая информатика в расписании — теория сразу переходит в практику</p>
+                </div>
+
+                <div class="relative rounded-2xl border border-white/5 bg-white/[0.02] p-8 card-glow text-center">
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                        <div class="w-8 h-8 rounded-full bg-dark border-2 border-blue-500/30 flex items-center justify-center text-xs font-mono text-blue-400">02</div>
+                    </div>
+                    <div class="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mx-auto mb-5">
+                        <iconify-icon icon="lucide:puzzle" width="24" class="text-blue-400"></iconify-icon>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Кружки</h3>
+                    <p class="text-sm text-zinc-500 leading-relaxed">Робототехника, дроны, лазерные станки, 3D-печать — делаешь руками то, что кодил</p>
+                </div>
+
+                <div class="relative rounded-2xl border border-white/5 bg-white/[0.02] p-8 card-glow text-center">
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                        <div class="w-8 h-8 rounded-full bg-dark border-2 border-purple-500/30 flex items-center justify-center text-xs font-mono text-purple-400">03</div>
+                    </div>
+                    <div class="w-14 h-14 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mx-auto mb-5">
+                        <iconify-icon icon="lucide:zap" width="24" class="text-purple-400"></iconify-icon>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Внеурочная деятельность</h3>
+                    <p class="text-sm text-zinc-500 leading-relaxed">Хакатоны, CTF, экскурсии, проектная работа — ИТ-стиль жизни, а не просто предмет</p>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center">
+                <div class="max-w-2xl mx-auto rounded-2xl border border-emerald-500/10 bg-emerald-500/[0.03] p-8">
+                    <iconify-icon icon="lucide:quote" width="24" class="text-emerald-500/30 mb-4"></iconify-icon>
+                    <p class="text-lg text-zinc-300 leading-relaxed italic mb-4">Мы не просто учим программировать — мы даём подростку возможность попробовать себя в разных ИТ-сферах и найти то, что по-настоящему зажигает</p>
+                    <div class="accent-bar max-w-xs mx-auto mb-3"></div>
+                    <p class="text-xs text-zinc-500">Команда ИТ-вертикали школы № 7</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="accent-bar max-w-7xl mx-auto"></div>
+
+    <!-- Контакты -->
+    <section id="contacts" class="py-24 relative">
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl"></div>
+        <div class="relative max-w-7xl mx-auto px-6">
+            <div class="max-w-lg mx-auto text-center">
+                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/20 bg-emerald-500/5 text-xs text-emerald-400 font-medium mb-4">
+                    <iconify-icon icon="lucide:mail" width="12"></iconify-icon>
+                    Контакты
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight mb-4">Хотите в ИТ-класс?</h2>
+                <p class="text-zinc-400 text-lg mb-10">Свяжитесь с нами, чтобы узнать о поступлении и наборе</p>
+
+                <div class="rounded-2xl border border-white/5 bg-white/[0.02] p-8 card-glow">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
+                            <iconify-icon icon="lucide:user" width="20" class="text-emerald-400"></iconify-icon>
+                        </div>
+                        <div class="text-left">
+                            <div class="font-semibold text-sm">Контакты по вопросам обучения</div>
+                            <div class="text-xs text-zinc-500">ГБОУ Школа № 7 г. Москвы</div>
+                        </div>
+                    </div>
+                    <div class="accent-bar mb-6"></div>
+                    <div class="space-y-4">
+                        <a href="tel:+7 (499) 138-38-27" class="flex items-center gap-3 p-3 rounded-xl border border-white/5 bg-white/[0.02] hover:border-emerald-500/20 transition-colors duration-150 group">
+                            <div class="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center">
+                                <iconify-icon icon="lucide:phone" width="16" class="text-zinc-500 group-hover:text-emerald-400 transition-colors"></iconify-icon>
+                            </div>
+                            <div class="text-left">
+                                <div class="text-xs text-zinc-600">Телефон</div>
+                                <div class="text-sm font-mono text-zinc-300 group-hover:text-white transition-colors">+7 (499) 138-38-27</div>
+                            </div>
+                        </a>
+                        <a href="#" class="flex items-center gap-3 p-3 rounded-xl border border-white/5 bg-white/[0.02] hover:border-emerald-500/20 transition-colors duration-150 group">
+                            <div class="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center">
+                                <iconify-icon icon="lucide:map-pin" width="16" class="text-zinc-500 group-hover:text-emerald-400 transition-colors"></iconify-icon>
+                            </div>
+                            <div class="text-left">
+                                <div class="text-xs text-zinc-600">Адрес</div>
+                                <div class="text-sm text-zinc-300 group-hover:text-white transition-colors">г. Москва, ул. Крупской 17</div>
+                            </div>
+                        </a>
+                        <a href="#" class="flex items-center gap-3 p-3 rounded-xl border border-white/5 bg-white/[0.02] hover:border-emerald-500/20 transition-colors duration-150 group">
+                            <div class="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center">
+                                <iconify-icon icon="lucide:globe" width="16" class="text-zinc-500 group-hover:text-emerald-400 transition-colors"></iconify-icon>
+                            </div>
+                            <div class="text-left">
+                                <div class="text-xs text-zinc-600">Проект</div>
+                                <div class="text-sm text-zinc-300 group-hover:text-white transition-colors">https://profil.mos.ru/it-vert</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-white/5">
+                        <a href="tel:+7 (499) 138-38-27" class="w-full inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-white text-dark font-semibold text-sm rounded-xl hover:bg-zinc-200 transition-colors duration-150">
+                            <iconify-icon icon="lucide:phone" width="16"></iconify-icon>
+                            Позвонить
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-white/5 py-8">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-6 h-6 rounded bg-emerald-500/20 flex items-center justify-center">
+                    <iconify-icon icon="lucide:code-2" width="12" class="text-emerald-400"></iconify-icon>
+                </div>
+                <span class="text-xs text-zinc-600">ГБОУ Школа № 7 г. Москвы — ИТ-вертикаль</span>
+            </div>
+            <div class="text-xs text-zinc-700">Проект «ИТ-класс в московской школе»</div>
+        </div>
+    </footer>
+
+</body>
+</html>
